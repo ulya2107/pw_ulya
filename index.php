@@ -37,5 +37,28 @@ if($nilai >= 85){
 }else {
     echo "Grade E";
 }
-?> 
+
+echo "<br><br>=======================<br><br>";
+//PERCABANGAN GENAP GANJIL
+
+$nilai1 = 5;
+$nilai2 = 8;
+$nilai3 = 10;
+$nilai4 = 20;
+$nilai5 = 13;
+
+$hasil = $nilai1 + $nilai2 - $nilai3 * $nilai4 / $nilai5;
+
+echo "Hasil: $hasil <br>";
+$bulat = (int) $hasil;
+if ($bulat % 2 == 0) {
+    echo "Genap";
+} else {
+    echo "Ganjil";
+}
+
+?>
+
+
+
 
