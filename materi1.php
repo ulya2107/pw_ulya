@@ -53,7 +53,7 @@ echo "Hasil: $hasil <br>";
 $bulat = (int) $hasil;
 if ($bulat % 2 == 0) {
     echo "Genap";
-} else {
+} else { echo "Ganjil";
     echo "Ganjil";
 }
 
