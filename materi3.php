@@ -46,4 +46,35 @@ if (isset($_POST["angka1"])){
     echo "<br>";
     echo kurang($newAngka1, $newAngka2);
 }
+
+
+function login(string $username, string $password){
+    $usernamebenar = "admin";
+    $passwordbenar = "12345";
+    if($username == $usernamebenar && $password == $passwordbenar) {
+        return true;
+    }else {
+        return False;
+    }
+}
+?>
+
+<form method= "POST">
+    <label for = "username">Username:</label>
+    <input type = "text" name = "username"><br><br>
+    <label for = "password">Password:</label>
+    <input type = "password" name = "password"><br><br>
+    <input type = "submit" name = "login" value = "login">
+</form>
+
+<?php
+if (isset($_POST["login"])){
+    $newUsername = $_POST["username"];
+    $newPassword = $_POST["password"];
+    if (login ($newUsername, $newPassword)){
+        echo "Login Berhasil";
+    }else {
+        echo "Login Gagal";
+    }
+}
 ?>
