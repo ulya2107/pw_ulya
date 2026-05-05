@@ -17,6 +17,8 @@ if(isset($_POST['kirim'])) {
 }
 ?>
 
+
+
 <form method = "POST">
     Username : <input type= "text" name= "username">
     Password : <input type= "password" name= "password">
@@ -24,3 +26,41 @@ if(isset($_POST['kirim'])) {
     Email : <input type= "email" name= "email">
     <input type= "submit" value= "Kirim Data" name= "kirim">
 </form>
+
+//menampilkan Data dalam tabel
+
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Aksi</th>
+    </tr>
+
+<?php
+$sql = "SELECT * FROM user";
+$query = mysqli_query ($conn, $sql);
+while ($row = mysqli_fetch_assoc($query)) {
+    echo "<tr>
+    <td>{$row['id']}</td>
+    <td>{$row['username']}</td>
+    <td>{$row['password']}</td>
+    <td>{$row['nama']}</td>
+    <td>{$row['email']}</td>
+    <td><a href='materi4.php?hapus={$row['id']}'>Hapus</a> | <a href=?edit={$row['id']}>Edit</a></td>
+    </tr>";
+}
+//proses hapus
+if(isset($_GET['hapus'])) {
+    $id = $_GET['hapus'];
+    $sql = "DELETE FROM user WHERE id = '$id'";
+    $query = mysqli_query($conn, $sql);
+    if ($query) {
+        echo "Data berhasil dihapus";
+    } else {
+        echo "Data gagal dihapus";
+    }
+}
+?>
