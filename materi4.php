@@ -64,3 +64,37 @@ if(isset($_GET['hapus'])) {
     }
 }
 ?>
+</table>
+
+//proses edit
+<?php
+if (isset($_GET["edit"])) {
+    $id = $_GET["edit"];
+    $sql = "SELECT * FROM user WHERE id = '$id'";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($query);
+    echo "<form method='POST'>
+    Username : <input type=' text' name='username' value='{$row['username']}'>
+    Password : <input type=' password' name=' password' value='{$row['password']}'>
+    Nama : <input type=' text' name=' nama' value='{$row['nama']}'>
+    Email : <input type=' email' name=' email' value='{$row['email']}'>
+    <input type='submit' value='Edit Data' name='edit'>
+    </form>";
+}
+
+if (isset($_POST['edit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+
+    $sql ="UPDATE user SET username = '$username', password = '$password', nama = '$nama', email = '$email' WHERE id = '$id'";
+    $query = mysqli_query($conn, $sql);
+
+    if ($query) {
+        echo "Data Berhasil Diupdate";
+    } else {
+        echo "Data Gagal Diupdate";
+    }
+}
+?>
